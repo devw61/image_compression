@@ -28,8 +28,7 @@ def svd(A):
     return U, Sigma, V[:, :r].T
 
 
-
-if __name__ == "__main__":
+def run_svd_img_comp():
     A = imread('image.png')
     X = np.mean(A, -1)  # convert to grayscale
 
@@ -51,5 +50,9 @@ if __name__ == "__main__":
 
         img = plt.imshow(X_approx, cmap='gray')
         plt.axis('off')
-        plt.savefig(f"after_{r}.png", dpi=300, bbox_inches='tight', pad_inches=0)
-        plt.savefig(f"after_numpy_{r}.png", dpi=300, bbox_inches='tight', pad_inches=0)
+        plt.savefig(f"svd_{r}.png", dpi=300, bbox_inches='tight', pad_inches=0)
+        plt.savefig(f"svd_numpy_{r}.png", dpi=300, bbox_inches='tight', pad_inches=0)
+
+
+if __name__ == "__main__":
+    run_svd_img_comp()
