@@ -45,13 +45,16 @@ def run_svd_img_comp():
         X_approx = U[:, :r] @ S[:r, :r] @ VT[:r, :]
         X_approx_ = U_[:, :r] @ S_[:r, :r] @ VT_[:r, :]
 
+        # validation between custom SVD and numpy SVD
+        diff = np.linalg.norm(X_approx - X_approx_, ord='fro')
+        print(f"Frobenius norm dif @ rank {r}: {diff}")
+
         plt.figure(j+1)
         j += 1
 
-        img = plt.imshow(X_approx, cmap='gray')
+        plt.imshow(X_approx, cmap='gray')
         plt.axis('off')
         plt.savefig(f"svd_{r}.png", dpi=300, bbox_inches='tight', pad_inches=0)
-        plt.savefig(f"svd_numpy_{r}.png", dpi=300, bbox_inches='tight', pad_inches=0)
 
 
 if __name__ == "__main__":
