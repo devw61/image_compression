@@ -38,10 +38,13 @@ if __name__ == "__main__":
     plt.savefig("before.png", dpi=300, bbox_inches='tight', pad_inches=0)
 
     U, S, VT = svd(X)
+    U_, S_, VT_ = np.linalg.svd(X, full_matrices=False)
+    S_ = np.diag(S_)
 
     j = 0
     for r in (5, 20, 50, 100):
         X_approx = U[:, :r] @ S[:r, :r] @ VT[:r, :]
+        X_approx_ = U_[:, :r] @ S_[:r, :r] @ VT_[:r, :]
 
         plt.figure(j+1)
         j += 1
@@ -49,3 +52,4 @@ if __name__ == "__main__":
         img = plt.imshow(X_approx, cmap='gray')
         plt.axis('off')
         plt.savefig(f"after_{r}.png", dpi=300, bbox_inches='tight', pad_inches=0)
+        plt.savefig(f"after_numpy_{r}.png", dpi=300, bbox_inches='tight', pad_inches=0)
