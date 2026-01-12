@@ -7,4 +7,3 @@ These are simple image compression algorithms that I try to recreate. There can 
 - For wavelet: I implement the haar algo instead of the 1 million other algos because of simplicity
 - For FFT: I use the Cooley-Tookey cause N logN < N^2 * M^2
 
-This is protected under MIT, but have fun with it if you want 
