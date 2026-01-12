@@ -74,14 +74,14 @@ def inv_haar_2d(A, levels=1):
 
     return A
 
-
+# thresh of how much to keep
 def threshold(A, keep_percent):
     flat = np.abs(A.flatten())
     thresh = np.percentile(flat, 100 - keep_percent)
     A[np.abs(A) < thresh] = 0
     return A
 
-
+# main wavelet compression function
 def wavelet_compress(A, levels=4, keep_percent=5):
     A = A.astype(float)
 
@@ -91,7 +91,7 @@ def wavelet_compress(A, levels=4, keep_percent=5):
 
     return np.clip(A_rec, 0, 255)
 
-
+# ensure dims are pwr of 2
 def pad_to_pow2(A):
     M, N = A.shape
     M2 = 1 << (M - 1).bit_length()
@@ -113,13 +113,12 @@ if __name__ == "__main__":
     # ensure dimensions are powers of 2
     X = pad_to_pow2(X)
 
-    plt.imshow(X, cmap='gray')
-    plt.axis('off')
-    plt.savefig("before.png", dpi=300, bbox_inches='tight', pad_inches=0)
 
     for keep in (0.5, 1, 5, 10, 20):
+        # my implementation
         X_rec = wavelet_compress(X, levels=4, keep_percent=keep)
 
+        # numpy + pywt implementation
         coeffs = pywt.wavedec2(X, 'haar', level=4)
         arr, coeff_slices = pywt.coeffs_to_array(coeffs)
         arr = threshold(arr, keep)
@@ -130,4 +129,4 @@ if __name__ == "__main__":
 
         plt.imshow(X_rec, cmap='gray')
         plt.axis('off')
-        plt.savefig(f"wavelet_keep_{int(keep)}.png", dpi=300, bbox_inches='tight', pad_inches=0)
+        plt.savefig(f"wavelet_keep_{int(keep)}.jpeg", dpi=300, bbox_inches='tight', pad_inches=0)

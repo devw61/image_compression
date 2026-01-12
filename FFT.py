@@ -86,10 +86,6 @@ def run_fft_img_comp():
     # ensure dimensions are powers of 2
     X = pad_to_pow2(X)
 
-    plt.imshow(X, cmap='gray')
-    plt.axis('off')
-    plt.savefig("before.png", dpi=300, bbox_inches='tight', pad_inches=0)
-
     FT_ = np.fft.fft2(X)
     FT = fft2(X)
     print(f"Validation: {np.max(np.abs(FT_ - FT))} | should be close to 0")
@@ -108,7 +104,7 @@ def run_fft_img_comp():
 
         plt.imshow(Flow, cmap='gray')
         plt.axis('off')
-        plt.savefig(f"fft_keep_{int(keep*100)}.png", dpi=300, bbox_inches='tight', pad_inches=0)
+        plt.savefig(f"fft_keep_{int(keep*100)}.jpeg", dpi=300, bbox_inches='tight', pad_inches=0)
 
 
 if __name__ == "__main__":

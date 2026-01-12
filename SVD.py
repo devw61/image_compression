@@ -32,10 +32,6 @@ def run_svd_img_comp():
     A = imread('image.png')
     X = np.mean(A, -1)  # convert to grayscale
 
-    img = plt.imshow(X, cmap='gray')
-    plt.axis('off')
-    plt.savefig("before.png", dpi=300, bbox_inches='tight', pad_inches=0)
-
     U, S, VT = svd(X)
     U_, S_, VT_ = np.linalg.svd(X, full_matrices=False)
     S_ = np.diag(S_)
@@ -54,7 +50,7 @@ def run_svd_img_comp():
 
         plt.imshow(X_approx, cmap='gray')
         plt.axis('off')
-        plt.savefig(f"svd_{r}.png", dpi=300, bbox_inches='tight', pad_inches=0)
+        plt.savefig(f"svd_{r}.jpeg", dpi=300, bbox_inches='tight', pad_inches=0)
 
 
 if __name__ == "__main__":
