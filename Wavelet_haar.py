@@ -103,7 +103,7 @@ def pad_to_pow2(A):
 
 
 if __name__ == "__main__":
-    A = imread('image.png')
+    A = imread('image.jpg')
     X = np.mean(A, -1)  # convert to grayscale
     
     # Scale to [0, 255] range if needed
@@ -129,4 +129,4 @@ if __name__ == "__main__":
 
         plt.imshow(X_rec, cmap='gray')
         plt.axis('off')
-        plt.savefig(f"wavelet_keep_{int(keep)}.jpeg", dpi=300, bbox_inches='tight', pad_inches=0)
+        plt.savefig(f"wavelet_keep_{int(keep)}.pdf", dpi=300, bbox_inches='tight', pad_inches=0)

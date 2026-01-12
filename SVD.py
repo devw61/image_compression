@@ -50,7 +50,7 @@ def run_svd_img_comp():
 
         plt.imshow(X_approx, cmap='gray')
         plt.axis('off')
-        plt.savefig(f"svd_{r}.jpeg", dpi=300, bbox_inches='tight', pad_inches=0)
+        plt.savefig(f"svd_{r}.pdf", dpi=300, bbox_inches='tight', pad_inches=0)
 
 
 if __name__ == "__main__":
